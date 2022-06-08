@@ -7,10 +7,12 @@ import {IDB}                 from "./interfaces/I-db";
 console.log("Starting...");
 
 const
-	$key         = $("#key-input"),
-	$load_result = $("#load-result"),
+	$key            = $("#key-input"),
+	$load_result    = $("#load-result"),
+	$load_button = $("#load-button"),
+	$save_button = $("#save-button"),
 	$load_key_input = $("#load-key-input"),
-	$value       = $("#value-input");
+	$value          = $("#value-input");
 
 
 class Main {
@@ -19,7 +21,7 @@ class Main {
 	
 	save<T>(): void {
 		const
-			key = <string>$key.val(),
+			key   = <string>$key.val(),
 			value = <string>$value.val();
 		
 		console.log(`SAVING ${key} with value ${value}  ...`);
@@ -43,12 +45,22 @@ const
 	//dependency
 	webSQLManager       = new WebSqlManager(),
 	localStorageManager = new LocalStorageManager(),
-	main                = new Main(localStorageManager)
+	main                = new Main(webSQLManager) //DI
 ;
 
 globalThis["save"] = main.save.bind(main);
 globalThis["load"] = main.load.bind(main);
 
-main.save<string>();
+
+(async () => {
+		await webSQLManager.init();
+		$load_button.prop('disabled', false);
+		$save_button.prop('disabled', false);
+		
+	}
+
+)(); //IIFE
+
+
 
 
