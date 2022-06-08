@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Data Saver</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	
+</head>
+<style>
+	.form {
+		display: flex;
+		flex-direction: column;
+		padding: 40px;
+		background: cornflowerblue;
+		color: white;
+	}
+</style>
+<body>
+
+	<div class="form">
+		<label for="key-input">Key:</label>
+		<input id="key-input">
+		<label for="value-input">Value:</label>
+		<input id="value-input">
+		<br>
+		<input type="button" value="Save" onclick="save()">
+		
+	</div>
+	<div class="form">
+		<h2> Load value</h2>
+		<label for="load-key-input">Key:</label>
+		<input id="load-key-input">
+		<label for="load-result">Value:</label>
+		<span id="load-result"></span>
+		<br>
+		<input type="button" value="Load" onclick="load()">
+		
+	</div>
+	
+</body>
+</html>
+
+
+<script src="js/main.js" type="module"></script>
