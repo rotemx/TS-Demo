@@ -5,7 +5,7 @@ export class LocalStorageManager implements IDB {
 		localStorage[key] = JSON.stringify(value);
 	}
 	
-	load(key: string): any {
+	async load<T>(key: string): Promise<T> {
 		return localStorage[key];
 	}
 }

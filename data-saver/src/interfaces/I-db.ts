@@ -2,5 +2,5 @@
 export interface IDB {
 	save<T>(key: string, value: T): void;
 	
-	load<T>(key: string): T;
+	load<T>(key: string): Promise<T>;
 }

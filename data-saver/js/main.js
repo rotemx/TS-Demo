@@ -22,22 +22,25 @@ class Main {
         this.db.save(key, value);
     }
     load() {
-        const key = $load_key_input.val();
-        console.log(`loading key ${key}... `);
-        const value = this.db.load(key);
-        $load_result
-            .empty()
-            .text(value);
+        return __awaiter(this, void 0, void 0, function* () {
+            const key = $load_key_input.val();
+            console.log(`loading key ${key}... `);
+            const value = yield this.db.load(key);
+            $load_result
+                .empty()
+                .text(value);
+        });
     }
 }
 const 
 //dependency
-webSQLManager = new WebSqlManager(), localStorageManager = new LocalStorageManager(), main = new Main(webSQLManager) //DI
+webSQLManager = new WebSqlManager(), //cannot await "new..." - synchronous code!
+localStorageManager = new LocalStorageManager(), main = new Main(localStorageManager) //DI
 ;
 globalThis["save"] = main.save.bind(main);
 globalThis["load"] = main.load.bind(main);
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield webSQLManager.init();
-    $load_button.prop('disabled', false);
-    $save_button.prop('disabled', false);
-}))(); //IIFE
+    $load_button.prop("disabled", false);
+    $save_button.prop("disabled", false);
+}))(); //IIFE - immediately invoked function expression
