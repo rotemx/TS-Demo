@@ -45,7 +45,7 @@ const
 	//dependency
 	webSQLManager       = new WebSqlManager(), //cannot await "new..." - synchronous code!
 	localStorageManager = new LocalStorageManager(),
-	main                = new Main(localStorageManager) //DI
+	main                = new Main(webSQLManager) //DI
 ;
 
 globalThis["save"] = main.save.bind(main);

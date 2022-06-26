@@ -35,7 +35,7 @@ class Main {
 const 
 //dependency
 webSQLManager = new WebSqlManager(), //cannot await "new..." - synchronous code!
-localStorageManager = new LocalStorageManager(), main = new Main(localStorageManager) //DI
+localStorageManager = new LocalStorageManager(), main = new Main(webSQLManager) //DI
 ;
 globalThis["save"] = main.save.bind(main);
 globalThis["load"] = main.load.bind(main);
